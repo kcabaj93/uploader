@@ -35,5 +35,6 @@ public class ContactsDAO {
         preparedStatement.executeBatch();
         preparedStatement.clearBatch();
         preparedStatement.close();
+        dbConnector.close();
     }
 }

@@ -26,4 +26,17 @@ public class DBConnector {
         }
         return connection;
     }
+
+    /**
+     * Close connection to DB
+     * @return
+     */
+    public Connection close() {
+        try {
+            connection.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return connection;
+    }
 }

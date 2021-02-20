@@ -58,6 +58,10 @@ public class CustomersDAO {
                     excep.printStackTrace();
                 }
             }
+        } finally {
+            if (connection != null) {
+                dbConnector.close();
+            }
         }
         return true;
     }
