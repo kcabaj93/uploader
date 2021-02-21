@@ -60,10 +60,7 @@ public class Uploader {
         if (customers.isEmpty()) {
             System.out.println("No customers were found for import");
         } else {
-            boolean isSaved = CustomersDAO.insertCustomers(customers);
-            if (isSaved) {
-                System.out.println("Saved new customers");
-            }
+            CustomersDAO.insertCustomers(customers);
         }
     }
 
@@ -71,9 +68,8 @@ public class Uploader {
      * The method asks whether to add a new file
      */
     private static void checkRepeatUpload() {
-        System.out.println("Do you want to upload a new file? (Y/N)");
+        System.out.print("Do you want to upload a new file? (N/Y) [Default=N]: ");
         Scanner scanner = new Scanner(System.in);
-        System.out.print("N ");
         String answer = scanner.nextLine();
         switch (answer) {
             case "y":

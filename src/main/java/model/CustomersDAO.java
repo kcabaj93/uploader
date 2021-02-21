@@ -27,6 +27,7 @@ public class CustomersDAO {
         try {
             preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             connection.setAutoCommit(false);
+            int i = 0;
             for (Customers customer : customers) {
                 preparedStatement.setString(1, customer.getName());
                 preparedStatement.setString(2, customer.getSurname());
@@ -46,7 +47,12 @@ public class CustomersDAO {
                     throw new SQLException("Creating customer failed, no ID obtained.");
                 }
                 connection.commit();
+                i++;
+                if (i % 100 == 0) {
+                    System.out.println("Saved customers: " + i);
+                }
             }
+            System.out.println("All saved customers: " + i);
             preparedStatement.close();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
